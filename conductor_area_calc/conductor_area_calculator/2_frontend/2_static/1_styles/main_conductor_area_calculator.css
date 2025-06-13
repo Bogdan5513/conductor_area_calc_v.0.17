@@ -1,0 +1,446 @@
+/* главный СSS-файл модуля */
+
+/* 1. Глобальные переменные */
+:root {
+
+    /* Основные цвета */
+    --bg_1: rgba(0, 0, 0, 1);
+    --bg_2: rgba(9, 10, 10, 0.921);
+
+    --main_1: rgba(231, 106, 48, 1);
+    --accent_1: rgba(142, 152, 224, 0.957);
+    --accent_2: rgba(0, 255, 8, 1);
+    --peripheral: rgba(102, 241, 246, 0.95);
+
+    /* Цвета checkoxes */
+    --checkbox_shadow: rgba(231, 106, 48, 0.5);
+    --checmark_color: rgb(251, 255, 0, 1);
+
+    /* Основные размеры */
+    --containers_boarder_width: 5px;
+    --containersboarder_radius: 25px;
+
+    --containers_vertical_delta: 20px;
+
+    --inputs_border_width: 2px;
+    --inputs_border_radius: 5px;
+
+    --main_left_padding_for_containers: 20px;
+    --main_bottom_padding_for_containers: 20px;
+
+    /* Размеры для чекбокса */
+    --checkboxes_width: 15px;
+    --checkboxes_heigh: 15px;
+
+    --checkboxes_shadow_size: 15px;
+    --checkboxes_shadow_for_hover: 5px;
+
+    --checkmark_font_size: 12px;
+
+    --checkbox_zone_delta_vertical: 4px;
+    --checkbox_checkmark_delta_horizontal: 1px;
+    --checkbox_checkmark_delta_vertical: -3px;
+
+    /* Размеры для кнопок */
+    --buttons_heigh: 40px;
+}
+
+/* 2. Подключение шрифтов */
+
+@font-face {
+    font-family: 'ChakraPetch';
+    src: url('../3_data/1_fonts/ChakraPetch-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 3. Cтили основных элементов */
+
+/* Фон */
+body {
+    background: linear-gradient(to bottom, var(--bg_1), var(--bg_2));
+
+    font-family: 'ChakraPetch';
+
+    color: var(--main_1);
+}
+
+
+/* Inputs */
+button,
+input,
+select,
+textarea {
+    border-width: var(--inputs_border_width);
+    border-radius: var(--inputs_border_radius);
+    border-color: var(--main_1);
+
+    border-style: solid;
+
+    font-family: 'ChakraPetch', sans-serif; /* или 'GugiCyrillic' */
+    color: var(--main_1);
+    background-color: transparent;
+}
+
+button {
+    border-width: var(--containers_boarder_width);
+    border-radius: var(--containersboarder_radius);
+    border-color: var(--accent_1);
+
+    color: var(--accent_1);
+}
+
+button:hover {
+    color: var(--accent_2);
+    border-color: var(--accent_2);
+
+    box-shadow:
+        0 0 var(--checkboxes_shadow_for_hover) var(--accent_2),
+        0 0 var(--checkboxes_shadow_for_hover) var(--accent_2);
+}
+
+/* Placeholders */
+
+::placeholder {
+    font-family: 'ChakraPetch', sans-serif; /* или 'GugiCyrillic' */
+    color: var(--main_1);
+    background-color: transparent;
+}
+
+/* Checkboxes styles */
+
+input[type="checkbox"] {
+
+    appearance: none;
+
+    width: var(--checkboxes_width);
+    height: var(--checkboxes_heigh);
+
+    top: var(--checkbox_zone_delta_vertical);
+    left: -3px;
+
+    border-width: var(--inputs_border_width);
+    border-radius: var(--inputs_border_radius);
+    border-color: var(--main_1);
+
+    background-color: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+input[type="checkbox"]:hover
+{
+    box-shadow:
+        0 0 var(--checkboxes_shadow_size) var(--checkbox_shadow),
+        0 0 var(--checkboxes_shadow_size) var(--checkbox_shadow);
+}
+
+
+input[type="checkbox"]:checked
+{
+    background-color: var(--main_1);
+    border-color: var(--main_1);
+
+    box-shadow:
+        0 0 var(--checkboxes_shadow_size) var(--checkbox_shadow),
+        0 0 var(--checkboxes_shadow_size) var(--checkbox_shadow);
+
+}
+
+input[type="checkbox"]:checked::after {
+    content: "✓";
+    position: absolute;
+
+    left: var(--checkbox_checkmark_delta_horizontal);
+    top: var(--checkbox_checkmark_delta_vertical);
+
+    font-size: var(--checkmark_font_size);
+    color: var(--checmark_color);
+}
+
+
+/* Настройка сетки */
+
+
+/* Основные контейнеры */
+
+body {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    align-items: center;
+
+}
+
+
+.module_header,
+.user_input_zone_2,
+.output_zone_1,
+.output_zone_2 {
+    border-width: var(--containers_boarder_width);
+    border-radius: var(--containersboarder_radius);
+    border-color: var(--main_1);
+    border-style: solid;
+
+    display: flex;
+    width: 90%;
+
+    margin-bottom: 2%;
+
+    padding-left: var(--main_left_padding_for_containers);
+}
+
+.module_header{
+    margin-top: 2%;
+}
+
+.user_input_zone_1 {
+
+    position: relative;
+    right: 15px;
+
+    display: flex;
+
+    width: 90%;
+
+    flex-direction: row;
+    gap: 2%;
+
+    margin-bottom: 2%;
+}
+
+.method_selection_zone {
+
+    border-width: var(--containers_boarder_width);
+    border-radius: var(--containersboarder_radius);
+    border-color: var(--main_1);
+    border-style: solid;
+
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+
+    min-width: 300px;
+
+    padding-left: var(--main_left_padding_for_containers);
+}
+
+.calculation_methods {
+    padding-bottom: var(--main_bottom_padding_for_containers);
+}
+
+.solver_zone {
+    display: flex;
+    flex-direction: column;
+    width: 49%;
+    justify-content: space-between;
+}
+
+.solver_settings_zone {
+    border-width: var(--containers_boarder_width);
+    border-radius: var(--containersboarder_radius);
+    border-color: var(--main_1);
+    border-style: solid;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    padding-left: var(--main_left_padding_for_containers);
+    padding-bottom: var(--main_bottom_padding_for_containers);
+}
+
+.solver_buttons {
+
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: var(--buttons_heigh);
+
+    justify-content: space-between;
+
+    gap: 1%;
+
+    padding-left: var(--main_left_padding_for_containers);
+
+    margin-top: var(--main_bottom_padding_for_containers);
+}
+
+
+.calc_btn {
+    width: 49.5%;
+
+    position: relative;
+    right: 20px;
+
+}
+
+.clear_btn {
+    width: 49.5%;
+
+    position: relative;
+    left: 10px;
+}
+
+.user_input_zone_2 {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.user_input_header {
+    width: 99%;
+}
+
+.user_input_elemens {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+
+    width: 98%;
+}
+
+
+.power_input_container,
+.voltage_input_container,
+.cable_length_input_container,
+.ambient_temperature_input_container,
+.voltage_drop_input_container,
+.material_input_container {
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    width: fit-content;
+
+
+    margin-right: var(--main_left_padding_for_containers);
+
+}
+
+.output_zone_1 {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+.output_1_header {
+    width: 99%;
+
+}
+
+.output_1_elemens {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+
+.output_zone_2{
+     position: relative;
+    
+    display: flex;
+
+    width: 90%;
+
+    flex-direction: column;
+    gap: 2%;
+    justify-content: center;
+
+}
+
+.output_2_header {
+    justify-content: flex-start; 
+    width: 95%;
+}
+
+.output_2_filter {
+
+    border-width: 5px;
+    border-color: var(--main_1);
+    border-style: solid;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    
+
+    width: 94.5%;
+    min-width: 450px;
+    
+
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.isolation_filter,
+.conductor_filter,
+.conductors_quantity_filter,
+.protection_coating_filter,
+.temperature_filter_1,
+.temperature_filter_2,
+.layering_condition_filter {
+
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 170px ;
+    row-gap: 5px;
+    justify-content: space-between;
+    
+    gap: 50px 20px;
+    padding-bottom: 25px;
+    
+
+
+    margin-right: var(--main_left_padding_for_containers);
+    
+}
+
+.output_2_elemens {
+    border-width: var(--boarder_width_1);
+    border-color: var(--main_1);
+    border-style: solid;
+
+    display: flex;
+   flex-direction: row;
+   margin-top:15px;
+   margin-bottom: 15px;
+   align-items: center;
+   width: 97%; 
+
+}
+
+.output_2_element_1 {
+  display: flex;
+  
+  
+    width: 100%;
+}
+.cable_name,
+.cable_manufacturer,
+.cable_resailers {
+    border-width: var(--inputs_border_width);
+    border-color: var(--main_1);
+    border-style: solid;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
+
+    width: 34%;
+    height: 50px;
+}

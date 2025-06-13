@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>conductor_area</title>
+
+    <link id="dynamic_stylesheet" rel="stylesheet" href="/conductor_area_calculator/2_frontend/2_static/1_styles/main_conductor_area_calculator.css">
+</head>
+
+
+<body>
+
+    <div class="module_header">
+        <h1>Расчёт сечения проводника.</h1>
+    </div>
+
+    
+    <div class="user_input_zone_1">
+        <div class="method_selection_zone">
+            <div class="method_selection_header">
+                <h2>Метод расчёта</h2>
+            </div>
+        
+            <div class="calculation_methods">
+                <div class="calculation_methods_checkboxes">
+                    <div class="calculation_method_1_selector">
+                        <input type="checkbox" id="calculation_method_1" name="calculation_method_1" checked />
+                        <label for="calculation_method_1">С округлением</label>
+                        
+                    </div>
+
+                    <div class="calculation_method_2_selector">
+                        <input type="checkbox" id="calculation_method_2" name="calculation_method_2"/>
+                        <label for="calculation_method_2">По силе тока</label>
+                    </div>
+
+                    <div class="calculation_method_3_selector">
+                        <input type="checkbox" id="calculation_method_3" name="calculation_method_3"/>
+                        <label for="calculation_method_3">По условиям нагрева</label>
+                    </div>
+
+                    <div class="calculation_method_4_selector">
+                        <input type="checkbox" id="calculation_method_4" name="calculation_method_4"/>
+                        <label for="calculation_method_4">По экономической плотности тока</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="solver_zone">
+
+            <div class="solver_settings_zone">
+                <div class="solvers_selection_header">
+                    <h2>Модель ответа</h2>
+                </div>
+
+                <div class="solvers_checkboxes">
+                    <div class="solver_method_1_selector">
+                        <input type="checkbox" id="solver_method_1" name="solver_method_1" checked />
+                        <label for="solver_method_1">Минимизация сечения</label>
+                    </div>
+
+                    <div class="solver_method_2_selector">
+                        <input type="checkbox" id="solver_method_2" name="solver_method_2"/>
+                        <label for="solver_method_2">Максимизация сечения</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="solver_buttons">
+
+                <button class="calc_btn">Расчёт</button>
+
+
+                <button class="clear_btn">Новая задача</button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="user_input_zone_2">
+        <div class="user_input_header">
+            <h2>Ввод данных</h2>
+        </div>
+
+        <div class="user_input_elemens">
+            <div class="power_input_container">
+                <input class="power_input" placeholder="Мощность, Вт." data-remember>
+
+                <p class="power_input_check_zone"></p>
+            </div>
+
+            <div class="voltage_input_container">
+
+                <input class="voltage_input" placeholder="Напряжение, В." data-remember>
+
+                <p class="voltage_input_check_zone"></p>     
+            </div>
+
+            <div class="cable_length_input_container">
+
+                <input class="cable_length_input" placeholder="Длина линии, м." data-remember>
+
+                <p class="cable_length_input_check_zone"></p>
+            </div>
+            
+            <div class="ambient_temperature_input_container">
+
+                <input class="ambient_temperature_input" placeholder="Температура среды, °C." data-remember>
+
+
+                <p class="ambient_temperature_input_check_zone"></p>     
+            </div>  
+
+            
+            <div class="voltage_drop_input_container">
+
+                <input class="voltage_drop_input" placeholder="Падение напряжения, %." data-remember>
+
+                <p class="voltage_drop_input_check_zone"></p>
+            </div>
+
+            <div class="material_input_container">
+
+                <select name="material_selector" class="material_selector_1" id="material_selector_1" size="1">
+                    <option value="copper">Медный провод</option>
+                    <option value="aluminum">Алюминиевый провод</option>
+                </select>
+
+                <p class="material_input_check_zone"></p>
+            </div>  
+        </div>
+    </div>
+
+    <div class="output_zone_1">
+        <div class="output_1_header">
+            <h2>Параметры проводника</h2>
+        </div>
+
+        <div class="output_1_elemens">
+            <div class="calculated_current">
+                <p>Сила тока: 120 А.</p>
+            </div>
+
+            <div class="calculated_current">
+                <p>Падение напряжения: 5 В.</p>
+            </div>
+
+            <div class="calculated_current">
+                <p>Допустимое сечение проводника: 16 мм.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="output_zone_2">
+        <div class="output_2_header">
+            <h2>Подходящая кабельная продукция</h2>
+        </div>
+
+        <div class="output_2_filter">
+            <div class="isolation_filter">
+                <select name="isolation_filter_selector" class="isolation_filter_selector" id="isolation_filter_selector" size="1">
+                    <option value="def_is">Изоляция</option>
+                    <option value="pvc">ПВХ</option>
+                    <option value="pe">ПЭ</option>
+                    <option value="xlpe">СПЭ</option>
+                    <option value="pvc_heat_resistant">ПВХ-T</option>
+                    <option value="rubber">Резина</option>
+                </select>
+            </div>
+
+            <div class="conductor_filter">
+                <select name="conductor_filter_selector" class="conductor_filter_selector" id="conductor_filter_selector" size="1">
+                    <option value="cf_default">Тип жилы</option>
+                    <option value="standed">Многожильный</option>
+                    <option value="single_core">Одножильный</option>
+                </select>
+            </div>
+
+            <div class="protection_coating_filter">
+                <select name="protection_coating_filter_selector" class="protection_coating_filter_selector" id="protection_coating_filter_selector" size="1">
+                    <option value="protection_coating">Тип покрытия</option>
+                    <option value="without_protection_coating">-</option>
+                    <option value="hosepipe_protection_coating">Защитный шланг</option>
+                    <option value="fiber_protection_coating">Синтетическое волокно</option>
+                    <option value="steel_protection_coating">Стальная проволока</option>
+                </select>
+            </div>
+
+            <div class="temperature_filter_1">
+                <input class="min_temperature_input" placeholder="Мин. температура, °C." data-remember>
+            </div>
+
+            <div class="temperature_filter_2">
+                <input class="max_temperature_input" placeholder="Макс. температура, °C." data-remember>
+            </div>
+
+            <div class="layering_condition_filter">
+                <select name="layering_condition_filter_selector" class="layering_condition_filter_selector" id="layering_condition_filter_selector" size="1">
+                    <option value="layering_conditions">Прокладка в</option>
+                    <option value="no_layering_condition">-</option>
+                    <option value="inside_layering_condition">В воздухе/ по стене/ на эстакаде</option>
+                    <option value="cable_chanel_layering_condition">В пластиковой трубе</option>
+                    <option value="tubes_layering_condition">В гофре/в металлической трубе</option>
+                    <option value="ground_layering_condition">В земле</option>
+                    <option value="water_layering_condition">В кабель-канале</option>
+                    <option value="ground_layering_condition">В подполе/туннеле</option>
+                    <option value="ground_layering_condition">В стяжке</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="output_2_elemens">
+
+            <div class="output_2_element_1">
+
+                <div class="cable_name">
+                    <p>Наименование</p>
+                </div>
+
+                <div class="cable_manufacturer">
+                    <p>Производитель</p>
+                </div>
+
+                <div class="cable_resailers">
+                    <p>Продавец</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="conductor_area_calculator_main_script" type="module" src="/conductor_area_calculator/2_frontend/2_static/2_scripts/main_conductor_area_calculator.js"></script>
+</body>
+
+</html>
